@@ -1,0 +1,10 @@
+name: Payment Network
+description: Enable to process payments using the Payment Network Gateway
+type: module
+dependencies:
+  - uc_payment
+package: Ubercart - payment
+version: '8.x-4.0-alpha5'
+core: '8.x'
+project: 'ubercart'
+datestamp: 1472510047

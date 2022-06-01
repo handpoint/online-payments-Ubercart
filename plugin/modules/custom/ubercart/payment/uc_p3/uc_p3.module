@@ -1,0 +1,26 @@
+<?php
+
+	/**
+	 * Implementation of hook_form_alter().
+	 */
+	function uc_p3_form_alter( &$form, $form_state, $form_id ) {
+		if ( $form_id == 'uc_payment_paymentnetwork_hosted_offsite_form') {
+
+      unset($form['form_id']);
+      unset($form['build_id']);
+      unset($form['form_build_id']);
+		}
+	}
+
+function uc_p3_page_attachments_alter(&$page) {
+  global $p3IntegrationType;
+
+  if ($p3IntegrationType && $p3IntegrationType === 'hosted_v2') {
+    $page['#attached']['library'][] = 'uc_p3/payment_network';
+    $page['#attached']['drupalSettings']['uc_p3'] = [
+      'integration_type' => $p3IntegrationType,
+      'form_id' => 'uc-payment-paymentnetwork-hosted-offsite-form',
+    ];
+  }
+}
+

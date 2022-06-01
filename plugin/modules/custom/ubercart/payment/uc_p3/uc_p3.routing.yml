@@ -1,0 +1,7 @@
+uc_p3.complete:
+  path: '/cart/p3/complete'
+  defaults:
+    _controller: '\Drupal\uc_p3\Controller\P3Controller::complete'
+    _title: 'Order complete'
+  requirements:
+    _permission: 'access content'
