@@ -45,8 +45,8 @@ class Hosted extends PaymentMethodPluginBase implements OffsitePaymentMethodPlug
    */
   public function defaultConfiguration() {
     return [
-      'uc_p3_merchant_id' => '100856',
-      'uc_p3_secret' => 'Circle4Take40Idea',
+      'uc_p3_merchant_id' => '155928',
+      'uc_p3_secret' => 'm3rch4nts1gn4tur3k3y',
       'uc_p3_integration_type' => 'hosted',
       'uc_p3_country_code' => '',
       'debug' => false,
@@ -111,7 +111,7 @@ class Hosted extends PaymentMethodPluginBase implements OffsitePaymentMethodPlug
   public function buildRedirectForm(array $form, FormStateInterface $form_state, OrderInterface $order = NULL) {
     $parameters = $this->captureOrder($order);
 
-    $form['#action'] = "https://gateway.cardstream.com/hosted/";
+    $form['#action'] = "https://commerce-api.handpoint.com/hosted/";
     $cardId = \Drupal::service('uc_cart.manager')->get()->getId();
     $generatedUrl = Url::fromRoute('uc_p3.complete', ['cart_id' => $cardId], ['absolute' => TRUE])->toString();
 
@@ -125,7 +125,7 @@ class Hosted extends PaymentMethodPluginBase implements OffsitePaymentMethodPlug
     $parameters['signature'] = $this->createSignature($parameters);
 
     if ('hosted_v3' == $this->configuration['uc_p3_integration_type']) {
-      $form['#action'] = "https://gateway.cardstream.com/hosted/modal/";
+      $form['#action'] = "https://commerce-api.handpoint.com/hosted/modal/";
     }
 
     unset($form['submit']);
